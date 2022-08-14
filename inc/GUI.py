@@ -27,6 +27,8 @@ class GUI:
 
     def __init__(self):
         self.root.title("Autoclicker")
+        self.icon = PhotoImage(file="icon.ico")
+        self.root.iconphoto(True, self.icon)
 
         self.labelMain = Label(self.root, text="Auto Clicker", height=0)
         self.labelMoveTime = Label(self.root, text="Move time:")

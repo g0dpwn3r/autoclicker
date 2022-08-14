@@ -6,6 +6,7 @@ class ConfigParse:
     config = None
 
     ModeList = []
+    ModeListString = ""
     MouseOptions = {'modelist': list(), 'startmove': 0, 'endmove': 0, 'startclick': 0, 'endclick': 0, 'radius': 0, 'angle': 0, 'timeout': 0}
 
     def __init__(self):
@@ -53,6 +54,7 @@ class ConfigParse:
                 for k, v in self.config.items(section):
                     if k == 'modelist':
                         self.parseQuad(k, v)
+                        self.ModeListString = v
                     else:
                         self.MouseOptions[k] = v
 

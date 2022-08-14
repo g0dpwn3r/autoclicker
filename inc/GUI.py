@@ -1,9 +1,10 @@
 from tkinter import *
+from tkinter import messagebox as mb
 from pynput import keyboard
-from inc import Recording
-import subprocess
 import pygetwindow as gw
-import time
+from inc import Recording
+from inc import ConfigParse
+
 
 class GUI:
 
@@ -24,6 +25,8 @@ class GUI:
     checkboxesBool = [IntVar(root, 1), IntVar(root, 1), IntVar(root, 1), IntVar(root, 1), IntVar(root, 1), IntVar(root, 1), IntVar(root, 1)]
     applistText = []
     modelist = ['easeInQuad', 'easeOutQuad', 'easeInOutQuad', 'easeOutQuart', 'easeInOutQuart', 'easeInQuad', 'easeInBack']
+    modeString = ""
+    configModeList = []
 
     def __init__(self):
         self.root.title("Autoclicker")
@@ -56,6 +59,8 @@ class GUI:
 
         self.set_grid()
         self.render_checkbox()
+
+        self.read_config_values()
 
         self.root.mainloop()
 
@@ -117,10 +122,40 @@ class GUI:
 
     def create_window(self):
         self.parse_quad()
+        self.applist = []
         self.windowList = Toplevel()
         self.windowList.title = "Select program"
         self.render_list()
 
+
+    def read_config_values(self):
+        cp = ConfigParse.ConfigParse()
+        if cp.check_config():
+            cp.read_config()
+            self.configModeList = cp.ModeListString.split()
+            self.movetimeFrom = cp.MouseOptions['startmove']
+            self.movetimeTo = cp.MouseOptions['endmove']
+            self.clicktimeFrom = cp.MouseOptions['startclick']
+            self.clicktimeTo = cp.MouseOptions['endclick']
+            self.radius = cp.MouseOptions['radius']
+            self.angle = cp.MouseOptions['angle']
+            self.timeout = cp.MouseOptions['timeout']
+            self.get_checkboxe()
+        else:
+            mb.showwarning("No config file detected", "There is no config file it will be created")
+            self.convert_mode()
+            cp.write_config(self.modeString, self.movetimeFrom.get(), self.movetimeTo.get(), self.clicktimeFrom.get(), self.clicktimeTo.get(), self.radius.get(), self.angle.get(), self.timeout.get())
+
+    def convert_mode(self):
+        for m in self.modelist:
+            self.modeString += " " + m
+
+        print(self.modeString)
+
+    def get_checkboxe(self):
+        for i, v in enumerate(self.modelist):
+            if v not in self.configModeList:
+                self.checkboxesBool[i] = 0
 
     def render_list(self):
         self.app_list()

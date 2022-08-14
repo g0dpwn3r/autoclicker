@@ -33,7 +33,6 @@ class Recording:
 
     def parse_config(self):
         cp = ConfigParse.ConfigParse()
-        cp.write_config(self.ModeList, self.start, self.end, self.startc, self.endc, self.radius, self.angle, self.timeout)
         if not cp.check_config():
             cp.write_config(self.ModeList, self.start, self.end, self.startc, self.endc, self.radius, self.angle, self.timeout)
         else:

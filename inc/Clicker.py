@@ -3,12 +3,13 @@ import pyautogui
 import random
 import math
 import time
-from inc import Recording
+from inc.GUIConsole import GUIConsole
 
 class Clicker:
 
     quadRandomList = []
     cor = []
+    key = ""
     duration = 0
     start = 0
     startc = 0
@@ -22,8 +23,9 @@ class Clicker:
     quad = None
     r = None
 
-    def __init__(self, RandomMode, start, startc, end, endc, radius, angle, timeout):
+    def __init__(self, RandomMode, key, start, startc, end, endc, radius, angle, timeout):
         self.quadRandomList = RandomMode
+        self.key = key
         self.start = float(start)
         self.startc = float(startc)
         self.end = float(end)
@@ -31,6 +33,7 @@ class Clicker:
         self.radius = radius
         self.angle = angle
         self.timeout = timeout
+        self.guic = GUIConsole()
 
     def set_random(self):
         self.duration = random.uniform(self.start, self.end)
@@ -55,9 +58,9 @@ class Clicker:
             for mouse in self.cor:
                 if not self.recording:
                     self.set_random()
+                    self.guic.insert_column(round(mouse[0], 2), round(mouse[1], 2), round(self.duration, 2), round(self.interval, 2))
                     pyautogui.moveTo(mouse[0], mouse[1], self.duration, self.quad)
-                    pyautogui.click(interval=self.interval)
-
+                    pyautogui.drag(mouse[0], mouse[1], self.interval, button="left")
             time.sleep(self.timeout)
         except Exception as e:
             print(e)

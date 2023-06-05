@@ -3,16 +3,22 @@
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
-from inc import Recording
-from inc import Clicker
-from inc import ConfigParse
-from inc import GUI
+import os
+import GUI
+import Recording
+import Clicker
 
-import pyautogui
+def main():
+    g = GUI()
+    g.mainloop()
+    g.protocol("WM_DELETE_WINDOW", os._exit(0))
 
-# Press the green button in the gutter to run the script.
+def on_close():
+    Clicker.recording = False
+    os._exit(0)
+
 if __name__ == '__main__':
-    gui = GUI.GUI()
+    main()
 
 
 

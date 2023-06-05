@@ -1,8 +1,0 @@
-Hij maakt automatisch een config file aan die je daarna aan kunt passen
-
-1. click op het programma
-2. alt+tab naar je gewenste venster
-3. click op de punten waar jij wilt clicken 
-4. druk op spatie en click daarna met de linker muisknop om te starten 
-5. als je het programma op pauze zet kun je nieuwe coordinaten installen zie stap 3 tm 5 (dit doe je met spatie)
-6. als je klaar bent druk je op escape

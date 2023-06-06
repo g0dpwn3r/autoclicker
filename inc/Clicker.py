@@ -3,6 +3,7 @@ import pyautogui
 import random
 import math
 import time
+
 from inc.GUIConsole import GUIConsole
 
 class Clicker:

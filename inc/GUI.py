@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox as mb
 from pynput import keyboard
 import pygetwindow as gw
+
 from inc import Recording
 from inc import ConfigParse
 
@@ -129,7 +130,7 @@ class GUI:
 
 
     def read_config_values(self):
-        cp = ConfigParse.ConfigParse()
+        cp = ConfigParse()
         if cp.check_config():
             cp.read_config()
             self.configModeList = cp.ModeListString.split()
@@ -144,7 +145,7 @@ class GUI:
         else:
             mb.showwarning("No config file detected", "There is no config file it will be created")
             self.convert_mode()
-            cp.write_config(self.modeString, self.movetimeFrom.get(), self.movetimeTo.get(), self.clicktimeFrom.get(), self.clicktimeTo.get(), self.radius.get(), self.angle.get(), self.timeout.get())
+            cp.write_config(self.modeString, self.key, self.movetimeFrom.get(), self.movetimeTo.get(), self.clicktimeFrom.get(), self.clicktimeTo.get(), self.radius.get(), self.angle.get(), self.timeout.get())
 
     def convert_mode(self):
         for m in self.modelist:
@@ -172,12 +173,12 @@ class GUI:
         r = Recording.Recording()
         r.ModeList = ' '.join(self.modelist)
         r.key = self.key
-        r.angle = self.angle.get()
-        r.start = self.movetimeFrom.get()
-        r.end = self.movetimeTo.get()
-        r.startc = self.clicktimeFrom.get()
-        r.endc = self.clicktimeTo.get()
-        r.radius = self.radius.get()
+        r.angle = self.angle
+        r.start = self.movetimeFrom
+        r.end = self.movetimeTo
+        r.startc = self.clicktimeFrom
+        r.endc = self.clicktimeTo
+        r.radius = self.radius
         r.parse_config()
         r.record()
 

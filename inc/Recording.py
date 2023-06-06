@@ -1,9 +1,9 @@
 import pynput.mouse
 import os
-import Clicker
-import ConfigParse
-import Timer
-import GUIConsole
+from inc import Clicker
+from inc import ConfigParse
+from inc import Timer
+
 from pynput import mouse
 from pynput import keyboard
 from pynput.keyboard import Key
@@ -43,7 +43,7 @@ class Recording:
         self.startc = startc
         self.endc = endc
         self.radius = radius
-        self.timer = Timer.Timer()
+        self.timer = Timer()
         self.parse_config()
 
     def record(self):
@@ -55,12 +55,12 @@ class Recording:
 
 
     def parse_config(self):
-        cp = ConfigParse.ConfigParse()
+        cp = ConfigParse()
         if not cp.check_config():
             cp.write_config(self.ModeList, self.key, self.start, self.end, self.startc, self.endc, self.radius, self.angle, self.timeout)
         else:
             cp.read_config()
-            self.c = Clicker.Clicker(cp.ModeList, cp.keyOption['keybind'], cp.MouseOptions['startmove'], cp.MouseOptions['startclick'], cp.MouseOptions['endmove'], cp.MouseOptions['endclick'], cp.MouseOptions['radius'], cp.MouseOptions['angle'], cp.MouseOptions['timeout'])
+            self.c = Clicker(cp.ModeList, cp.keyOption['keybind'], cp.MouseOptions['startmove'], cp.MouseOptions['startclick'], cp.MouseOptions['endmove'], cp.MouseOptions['endclick'], cp.MouseOptions['radius'], cp.MouseOptions['angle'], cp.MouseOptions['timeout'])
 
     def start_clicking(self):
         while not self.recording:

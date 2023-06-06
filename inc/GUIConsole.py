@@ -2,11 +2,8 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import filedialog
 
-from PIL import ImageTk
-
 
 class GUIConsole(Toplevel):
-
     key = None
     ConsoleTable = None
     x = []
@@ -26,8 +23,8 @@ class GUIConsole(Toplevel):
         Toplevel.__init__(self, *args, **kwargs)
         self.wm_title("Autoclicker")
         self.geometry("620x480")
-        self.icon = ImageTk.PhotoImage(file="H:/code/rs3Autoclicker/icon.ico")
-        self.wm_iconphoto(False, self.icon)
+        # self.icon = ImageTk.PhotoImage(file="H:/code/rs3Autoclicker/icon.ico")
+        # self.wm_iconphoto(False, self.icon)
         self.s = ttk.Style()
         self.renderTreeView()
         self.ButtonDump = Button(self, text="Dump!", command=lambda: self.dump_data(self.ConsoleTable))
@@ -54,8 +51,6 @@ class GUIConsole(Toplevel):
         self.ConsoleTable.heading('m_interval', text='Move interval:', anchor=CENTER)
         self.ConsoleTable.heading('c_interval', text='Click interval:', anchor=CENTER)
 
-
-
     def insert_column(self, x, y, c_interval, m_interval):
         self.x.append(x)
         self.y.append(y)
@@ -73,8 +68,8 @@ class GUIConsole(Toplevel):
         fdlg = filedialog.asksaveasfile()
         fdlg.write(data)
 
-#verwijder dit waneer het ui ontworpen is
+
+# verwijder dit waneer het ui ontworpen is
 if __name__ == '__main__':
-    g = GUIConsole('easeInQuad easeOutQuad easeInOutQuad easeOutQuart easeInOutQuart easeInQuad easeInBack', 'Key.space',
-                   5, 360, 2, 5, 0, 5)
+    g = GUIConsole()
     g.mainloop()

@@ -4,9 +4,9 @@
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
 import os
-import GUI
-import Recording
-import Clicker
+
+from inc import GUI
+from inc import Clicker
 
 def main():
     g = GUI()

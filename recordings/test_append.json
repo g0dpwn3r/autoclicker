@@ -1,0 +1,24 @@
+{
+    "mousePositions": [
+        [
+            500,
+            600
+        ],
+        [
+            700,
+            800
+        ]
+    ],
+    "timestamp": 1760836499.9290857,
+    "config": {
+        "modeList": "easeInQuad easeOutQuad easeInOutQuad easeOutQuart easeInOutQuart easeInQuad easeInBack",
+        "key": "Key.space",
+        "angle": 360,
+        "start": 2.0,
+        "end": 5.0,
+        "startc": 0,
+        "endc": 5.0,
+        "radius": 5,
+        "timeout": 2
+    }
+}

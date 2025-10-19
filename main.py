@@ -1,25 +1,21 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
 import os
+import sys
 
-from inc import GUI
-from inc import Clicker
+from inc.GUI import GUI
 
 def main():
-    g = GUI()
-    g.mainloop()
-    g.protocol("WM_DELETE_WINDOW", os._exit(0))
+    try:
+        g = GUI()
+        g.root.protocol("WM_DELETE_WINDOW", on_close)
+        g.root.mainloop()
+    except Exception as e:
+        print(f"Error: {e}")
+        sys.exit(1)
 
 def on_close():
-    Clicker.recording = False
-    os._exit(0)
+    print("Application closing...")
+    sys.exit(0)
 
 if __name__ == '__main__':
     main()
-
-
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    
